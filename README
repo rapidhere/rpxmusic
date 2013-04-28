@@ -3,3 +3,8 @@ A xiami music client(www.xiami.com)
     $ 2013.4.23 initialized version
 ver 0.1
     login and sign
+    $ 2013.4.27 Front end:
+        skin system:
+            simple coverelement
+            simple button
+            simple skin_config

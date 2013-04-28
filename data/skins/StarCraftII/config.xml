@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<skin>
+	<background>back.png</background>
+	<buttons>
+		<close pic="close.png" pos="5,5"/>
+		<play pic="play.png" pos="450,120"/>
+		<pause pic="pause.png" pos="450,120"/>
+		<download pic="download.png" pos="380,190"/>
+		<previous pic="previous.png" pos="530,130"/>
+		<next pic="next.png" pos="570,130"/>
+	</buttons>
+	<element>
+		<cover pos="50,100"/>
+	</element>
+</skin>

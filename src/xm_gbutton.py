@@ -35,7 +35,8 @@ FLAG = 0
 class XMButton(gtk.Button):
     def __init__(self,png_src,on_click_cb,pos):
         gtk.Button.__init__(self)
-        self.bt_state = BUTTON_STATE["NORMAL"]
+
+        self.bt_state = "NORMAL"
         self.pos = pos
 
         self.connect("enter"    , self.on_ent)
@@ -48,6 +49,18 @@ class XMButton(gtk.Button):
         self.set_app_paintable(True)
 
         self.read_png(png_src)
+
+    def set_button_state(self,bs):
+        lbs = self.get_button_state()
+        if not bs in BUTTON_STATE:
+            raise xmerr.XMButtonWrongState(bs)
+        self.bt_state = bs
+
+    def get_button_state(self):
+        if not self.bt_state in BUTTON_STATE:
+            raise xmerr.XMButtonWrongState(self.bt_state)
+
+        return self.bt_state
 
     def read_png(self,png_src):
         pixbuf = gtk.gdk.pixbuf_new_from_file(png_src)
@@ -64,25 +77,24 @@ class XMButton(gtk.Button):
 
     def on_draw(self,widget,event,data = None):
         cr = widget.window.cairo_create()
-        pixbuf = self.pixbufs[self.bt_state]
+        pixbuf = self.pixbufs[BUTTON_STATE[self.get_button_state()]]
         cr.set_source_pixbuf(pixbuf,self.pos[0],self.pos[1])
         cr.paint()
 
         return True
 
     def on_ent(self,button):
-        if self.bt_state == BUTTON_STATE["DISABLE"]: return
-        self.bt_state = BUTTON_STATE["FOCUS"]
+        if self.bt_state == "DISABLE": return False
+        self.set_button_state("FOCUS")
 
     def on_lea(self,button):
-        if self.bt_state == BUTTON_STATE["DISABLE"]: return
-        self.bt_state = BUTTON_STATE["NORMAL"]
+        if self.bt_state == "DISABLE": return False
+        self.set_button_state("NORMAL")
 
     def on_pre(self,button):
-        if self.bt_state == BUTTON_STATE["DISABLE"]: return
-        self.bt_state = BUTTON_STATE["PRESS"]
+        if self.bt_state == "DISABLE": return False
+        self.set_button_state("PRESS")
 
     def on_rel(self,button):
-        if self.bt_state == BUTTON_STATE["DISABLE"]: return
-        self.bt_state = BUTTON_STATE["NORMAL"]
-
+        if self.bt_state == "DISABLE": return False
+        self.set_button_state("NORMAL")

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<skin>
+	<background>back.png</background>
+	<buttons>
+		<close pic="close.png" pos="10,10"/>
+		<minimize pic="minimize.png" pos="30,10"/>
+		<play pic="play.png" pos="560,61"/>
+		<pause pic="pause.png" pos="560,61"/>
+		<next pic="next.png" pos="622,66"/>
+		<download pic="download.png" pos="455,108"/>
+	</buttons>
+</skin>

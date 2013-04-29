@@ -41,6 +41,14 @@ class XMPlayerError(XMException):
 class XMNoPlaybin2Installed(XMPlayerError):
     def __init__(self) :
         XMPlayerError.__init__(self,"No plugin playbin2 Installed in your gstreamer")
+
+class XMGSTRuntimeError(XMPlayerError):
+    def __init__(self,re_info):
+        XMPlayerError.__init__(self,"GST - playbin2 runtime error :\n%s" % re_info)
+
+class XMPlayerInitFailed(XMPlayerError):
+    def __init__(self):
+        XMPlayerError.__init__(self,"XMPlayer Initialize failed!")
 # }
 # XM_GError : {
 class XM_GError(XMException):
